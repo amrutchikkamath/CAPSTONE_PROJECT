@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Doctor Availability" icon-name="standard:people">
+        <template if:true={doctors}>
+            <div class="slds-grid slds-wrap slds-p-around_small">
+                <template for:each={doctors} for:item="doc">
+                    <div key={doc.Id} class="slds-col slds-size_1-of-3 slds-p-around_small">
+                        <lightning-card title={doc.Name} icon-name="standard:user">
+                            <p class="slds-p-horizontal_small">
+                                <b>Specialty:</b> {doc.Specialty__c}<br/>
+                                <b>Status:</b> {doc.Availability_Status__c}<br/>
+                                <b>Phone:</b> {doc.Phone__c}<br/>
+                                <b>Email:</b> {doc.Email__c}
+                            </p>
+                        </lightning-card>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <template if:true={error}>
+            <p class="slds-text-color_error slds-p-around_small">
+                {error}
+            </p>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,29 @@
+<!-- todayFollowUps.html -->
+<template>
+    <lightning-card title="Today's Follow-Up Treatments" icon-name="standard:event">
+        <template if:true={treatments}>
+            <lightning-layout multiple-rows class="slds-p-around_small">
+                <template for:each={treatments} for:item="treatment">
+                    <lightning-layout-item key={treatment.Id} size="12" class="slds-p-around_x-small">
+                        <lightning-tile label={treatment.Appointment__r.Patient__r.Name} type="media">
+                            <lightning-icon slot="media" icon-name="standard:contact" alternative-text="Patient" size="small"></lightning-icon>
+                            <p class="slds-text-body_small">
+                                <strong>Doctor:</strong> {treatment.Appointment__r.Doctor__r.Name}
+                            </p>
+                            <p class="slds-text-body_small">
+                                <strong>Diagnosis:</strong> {treatment.Diagnosis__c}
+                            </p>
+                        </lightning-tile>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+        </template>
+
+        <template if:false={treatments}>
+            <div class="slds-p-around_medium slds-text-align_center">
+                <lightning-icon icon-name="utility:info" alternative-text="No Data" size="small" class="slds-m-bottom_small"></lightning-icon>
+                <p class="slds-text-body_regular">No follow-ups scheduled for today.</p>
+            </div>
+        </template>
+    </lightning-card>
+</template>
